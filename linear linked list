@@ -1,0 +1,139 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+//define structure
+typedef struct nodetype
+{
+int info;
+struct nodetype*next;
+}node;
+//function prototype
+void createEmptylist(node **head);
+void traverseinOrder(node *head);
+void insertatBeginning(node **head,int item);
+void insertatEnd(node**head,int item);
+void traverseinReverseorder(node* head);
+void insertAfterelement(node* head,int item,int after);
+node* Search(node* head,int item);
+
+
+void main()
+{
+node *head;
+int choice,element,after;
+clrscr();
+createEmptylist(&head);
+
+while(1)
+{
+printf("Operations Available Are\n");
+printf("1.Insert at Beginning\n");
+printf("2. Traverse in order\n");
+printf("3.Insert at End\n");
+printf("4.Traverse in Reverse Order\n");
+printf("5.Insert After Element\n");
+printf("6. Search\n");
+printf("Enter choice 1 - 6\n");
+scanf("%d",&choice);
+
+switch(choice)
+{
+case 1: printf("\n Enter element");
+	scanf("%d",&element);
+	insertatBeginning(&head,element);
+	break;
+
+case 2: if(head==NULL)
+	 printf("\nList is empty");
+	else
+	 traverseinOrder(head);
+	 break;
+case 3:  printf("\n Enter Element");
+	 scanf("%d",&element);
+	 insertatEnd(&head,element );
+	 break;
+ case 4:  if(head==NULL)
+	   printf("\n List is Empty");
+	   else
+	   traverseinReverseorder(head);
+case 5:  // printf("\n Enter Element\n");
+	  //scanf("%d",&element);
+	 //insertAfterelement(* head,element ,after);
+case 6: //node* Search(* head,item);
+	printf("\nPress any key to continue");
+	getch();
+	break;
+	default: exit(0);
+  }
+ }
+}
+void createEmptylist(node **head)
+{         *head=NULL;
+   }
+void insertatBeginning(node **head,int item)
+{
+     node*ptr;
+     ptr=(node*)malloc(sizeof(node));
+     ptr->info=item;
+
+     if(*head==NULL)
+      ptr->next=NULL;
+     else
+      ptr->next=*head;
+      *head=ptr;
+}
+
+void traverseinOrder(node *head )
+{
+while (head!=NULL)
+{
+printf("\n%d",head->info);
+head=head->next;
+}
+}
+void insertatEnd(node **head,int item)
+{
+node * ptr,*loc;
+ptr=(node *)malloc(sizeof(node));
+ptr->info=item;
+ptr->next=NULL;
+if (*head==NULL)
+{
+*head=ptr;
+}
+else{
+loc=*head;
+while(loc->next!=NULL)
+loc=loc->next;
+loc->next=ptr;
+}
+}
+void traverseinReverseorder(node* head)
+{
+if(head->next!=NULL)
+{
+traverseinReverseorder(head->next);
+}
+printf("\n%d",head->info);
+}
+//void insertAfterelement(node* head,int item,int after)
+//{
+//node* ptr,*loc;
+//loc=search(head,after);
+//if(loc==(node*) NULL)
+//return;
+//ptr=(node*)malloc(sizeof(node));ptr->info=item;ptr->next=loc->next;loc->next=ptr;}
+//node*Search(node * head,int item)
+//{while((head!=NULL)&&(head->info!=item)) head=head->next;  return head; }
+
+
+
+
+
+
+
+
+
+
+
+
