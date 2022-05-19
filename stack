@@ -1,0 +1,69 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#define size 5
+void push(int[],int*,int);
+int pop(int[],int*);
+int peek(int[],int);
+int item;
+void main()
+{
+int top=-1;
+int stack[size];
+int ch;
+clrscr();
+printf("1.for PUSH \n2. for POP \n for PEEk \n Other for exit");
+while(1)
+{
+printf("\nEnter your choice");
+scanf("%d",&ch);
+switch(ch)
+{
+case 1:
+if(top==size-1)
+printf("Overflow");
+else
+{printf("Enter the element");
+scanf("%d",&item);
+push(stack,&top,item);
+}
+break;
+case 2:
+if(top==-1)
+printf("Underflow");
+else
+{
+item=pop(stack,&top);
+printf("\n%d",item);
+}
+break;
+case 3:
+if(top==-1)
+printf("Underflow");
+else
+{
+item=peek(stack,top);
+printf("\n%d",item);
+}
+break;
+
+default:
+exit(0);
+}
+}
+}
+void push(int stack[],int *top,int item)
+{
+*top=*top+1;
+stack[*top]=item;
+}
+int pop(int stack[],int *top)
+{
+item=stack[*top];
+*top=*top-1;
+return item;
+}
+int peek(int stack[],int top)
+{
+return(stack[top]);
+}
